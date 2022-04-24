@@ -11,6 +11,12 @@ cp .env.sample .env
 yarn start:dev
 ```
 
+### New controller
+
+```bash
+nest g controller user/controllers/user --flat --no-spec
+```
+
 ## Folder structure
 
 ![Folder structure](./documents/nestjs.png)

@@ -1,6 +1,6 @@
 import { Controller, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { PublicController } from 'src/modules/shared/controllers';
+import { PublicController } from 'src/shared/controllers';
 
 @ApiTags('user')
 @Controller('auth')

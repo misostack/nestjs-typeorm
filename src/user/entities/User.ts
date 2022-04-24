@@ -1,5 +1,5 @@
-import { BaseEntity } from 'src/modules/shared/entities';
-import { generateTableName } from 'src/modules/shared/helpers';
+import { BaseEntity } from 'src/shared/entities';
+import { generateTableName } from 'src/shared/helpers';
 import { Column, Entity, Unique } from 'typeorm';
 
 export enum UserStatus {

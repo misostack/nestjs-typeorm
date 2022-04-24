@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { UserModule } from './modules/user/user.module';
-import { BlogModule } from './modules/blog/blog.module';
+import { UserModule } from './user/user.module';
+import { BlogModule } from './blog/blog.module';
 import { RouterModule } from '@nestjs/core';
 
 const routes = [

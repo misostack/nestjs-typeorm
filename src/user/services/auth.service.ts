@@ -1,5 +1,5 @@
 import { ExecutionContext, Injectable } from '@nestjs/common';
-import { AuthServiceInterface } from 'src/modules/shared/services';
+import { AuthServiceInterface } from 'src/shared/services';
 
 @Injectable()
 export class AuthService implements AuthServiceInterface {
