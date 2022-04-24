@@ -10,7 +10,7 @@ export class Environment {
     return {
       type: DATABASE_CONFIG.MAIN_DB_TYPE,
       url: DATABASE_CONFIG.MAIN_DB_URL,
-      entities: [dirname + '/modules/**/entities/*{.js,.ts}'],
+      entities: [dirname + '/**/entities/*.entity{.js,.ts}'],
       charset: DATABASE_CONFIG.MAIN_DB_CHARSET,
       // must not be synchronize automaticall, use data migration instea
       synchronize: false,
