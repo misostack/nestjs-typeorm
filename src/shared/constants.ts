@@ -1,0 +1,1 @@
+export const MAX_LENGTH_TEXT_FIELD = 65535;

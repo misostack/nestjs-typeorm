@@ -4,8 +4,8 @@ import { BlogModule } from './blog/blog.module';
 import { RouterModule } from '@nestjs/core';
 
 const routes = [
-  { path: 'blog', module: BlogModule },
-  { path: 'user', module: UserModule },
+  { path: '', module: BlogModule },
+  { path: 'users', module: UserModule },
 ];
 
 @Module({
