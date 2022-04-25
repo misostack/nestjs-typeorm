@@ -7,7 +7,7 @@ import {
   MaxLength,
 } from 'src/shared/dtos';
 import { MAX_LENGTH_TEXT_FIELD } from 'src/shared/constants';
-import { Gender, UserStatus } from '../entities/user.entity';
+import { Gender } from '../entities/user.entity';
 
 export class CreateUserDto {
   @ApiProperty()

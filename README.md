@@ -36,3 +36,21 @@ yarn typeorm migration:run
 ```bash
 yarn typeorm schema:drop
 ```
+
+## Functionals
+
+![Functional](./documents/NestJS-High-Level.png)
+
+## Priorities
+
+![Priorities](./documents/NestJS-Analyze.png)
+
+## Database
+
+### Google Drive
+
+- [Overview](https://docs.google.com/spreadsheets/d/1inTe8JJ_bGepaQv0LEQGYrGNf5FD7igSljqXEdHprO4/edit?usp=sharing)
+
+### Users & Roles
+
+![Users and Roles](./documents/NestJS-User-Role.png)
