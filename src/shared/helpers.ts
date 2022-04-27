@@ -27,7 +27,7 @@ export const setupGlobalPipes = (app: INestApplication) => {
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
-      stopAtFirstError: false,
+      stopAtFirstError: true,
     }),
   );
 };
