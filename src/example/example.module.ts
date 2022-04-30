@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ExampleController } from './controllers/example.controller';
+import { ExampleRepositoryImp } from './repositories/example.respository';
 import {
   ExampleService,
   ExampleServiceInjectionKey,
@@ -11,6 +12,10 @@ import {
     {
       provide: ExampleServiceInjectionKey,
       useClass: ExampleService,
+    },
+    {
+      provide: 'ExampleRepositoryImp',
+      useClass: ExampleRepositoryImp,
     },
   ],
 })

@@ -26,3 +26,9 @@ import {
 // };
 
 export { IsEnum, IsNotEmpty, IsOptional, IsUrl, MaxLength };
+
+export interface BaseDto {
+  id: number;
+  createdAt: Date;
+  updatedAt: Date;
+}

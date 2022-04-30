@@ -47,6 +47,10 @@ yarn typeorm schema:drop
 
 ![Priorities](./documents/NestJS-Analyze.png)
 
+## Codefirst Flow
+
+![Code first](./documents/NestJS-Code-first-flow.png)
+
 ## Database
 
 ## API Standard

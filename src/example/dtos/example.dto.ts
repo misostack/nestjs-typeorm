@@ -1,7 +1,8 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { Exclude, Expose } from 'class-transformer';
+import { BaseDto } from 'src/shared/dtos';
 
-export interface ExampleDto {
-  id: string;
+export interface ExampleDto extends BaseDto {
   firstName: string;
   lastName: string;
   gender: string;
@@ -13,25 +14,23 @@ export interface ExampleDto {
   password: string;
 }
 
-export class Example {
-  @Expose()
-  id: string;
-  @Expose()
+export class CreateExampleDto {
+  @ApiProperty()
   firstName: string;
-  @Expose()
+  @ApiProperty()
   lastName: string;
-  @Expose()
+  @ApiProperty()
   gender: string;
-  @Expose()
+  @ApiProperty()
   jobArea: string;
-  @Expose()
+  @ApiProperty()
   jobDescriptor: string;
-  @Expose()
+  @ApiProperty()
   jobTitle: string;
-  @Expose()
+  @ApiProperty()
   jobType: string;
-  @Expose()
+  @ApiProperty()
   prefix: string;
-  // @Exclude({ toPlainOnly: true })
+  @ApiProperty()
   password: string;
 }

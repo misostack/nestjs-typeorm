@@ -1,8 +1,12 @@
-import { Controller, Inject, Post } from '@nestjs/common';
+import faker from '@faker-js/faker';
+import { Body, Controller, Inject, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { instanceToPlain, plainToInstance } from 'class-transformer';
 import { PublicController } from 'src/shared/controllers';
 import { ResponseFactory } from 'src/shared/helpers';
-import { ExampleDto } from '../dtos';
+
+import { CreateExampleDto, ExampleDto } from '../dtos';
+import { Example } from '../entities/example.entity';
 import {
   ExampleService,
   ExampleServiceInjectionKey,
@@ -18,8 +22,27 @@ export class ExampleController extends PublicController {
     super();
   }
   @Post()
-  async create() {
-    const example: ExampleDto = await this.exampleService.createOne();
-    return ResponseFactory.createSuccess<ExampleDto>(example);
+  async create(@Body() payload: CreateExampleDto) {
+    const plain = {
+      firstName: faker.name.firstName(),
+      lastName: faker.name.lastName(),
+      gender: faker.name.gender(true),
+      jobArea: faker.name.jobArea(),
+      jobDescriptor: faker.name.jobDescriptor(),
+      jobTitle: faker.name.jobTitle(),
+      jobType: faker.name.jobType(),
+      prefix: faker.name.prefix(),
+      password: faker.random.alpha(40),
+    };
+    const createExampleDto: CreateExampleDto = plainToInstance(
+      CreateExampleDto,
+      plain,
+    );
+    const example: Example = await this.exampleService.createOne(
+      createExampleDto,
+    );
+    return ResponseFactory.createSuccess<ExampleDto>(
+      instanceToPlain(example) as ExampleDto,
+    );
   }
 }

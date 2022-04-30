@@ -1,28 +1,19 @@
-import { Injectable } from '@nestjs/common';
-import { Example, ExampleDto } from 'src/example/dtos';
+import { Inject, Injectable } from '@nestjs/common';
+import { CreateExampleDto, ExampleDto } from 'src/example/dtos';
 import { faker } from '@faker-js/faker';
 import { instanceToPlain, plainToInstance } from 'class-transformer';
+import { Example } from 'src/example/entities/example.entity';
+import { ExampleRepositoryImp } from 'src/example/repositories/example.respository';
 
 @Injectable()
 export class ExampleService {
-  async createOne(): Promise<ExampleDto> {
-    const obj = {
-      id: faker.random.alphaNumeric(),
-      firstName: faker.name.firstName(),
-      lastName: faker.name.lastName(),
-      gender: faker.name.gender(true),
-      jobArea: faker.name.jobArea(),
-      jobDescriptor: faker.name.jobDescriptor(),
-      jobTitle: faker.name.jobTitle(),
-      jobType: faker.name.jobType(),
-      prefix: faker.name.prefix(),
-      password: faker.random.alpha(40),
-    };
-    const example: Example = plainToInstance(Example, obj);
-    // console.log(example.password);
-    return instanceToPlain(example, {
-      strategy: 'excludeAll',
-    }) as any as ExampleDto;
+  constructor(
+    @Inject('ExampleRepositoryImp')
+    private ExampleRepositoryImp: ExampleRepositoryImp,
+  ) {}
+  async createOne(createExampleDto: CreateExampleDto): Promise<Example> {
+    const example = await this.ExampleRepositoryImp.createOne(createExampleDto);
+    return example;
   }
 }
 
