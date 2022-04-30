@@ -11,9 +11,11 @@ cp .env.sample .env
 yarn start:dev
 ```
 
-### New controller
+### CLI
 
 ```bash
+nest g module example
+nest g controller example/controllers/example --flat
 nest g controller user/controllers/user --flat --no-spec
 ```
 
@@ -47,6 +49,14 @@ yarn typeorm schema:drop
 
 ## Database
 
+## API Standard
+
+### Uniform Resource Interfaces
+
+#### 1. Request
+
+#### 2. Response
+
 ### Google Drive
 
 - [Overview](https://docs.google.com/spreadsheets/d/1inTe8JJ_bGepaQv0LEQGYrGNf5FD7igSljqXEdHprO4/edit?usp=sharing)
@@ -54,3 +64,7 @@ yarn typeorm schema:drop
 ### Users & Roles
 
 ![Users and Roles](./documents/NestJS-User-Role.png)
+
+# References
+
+- [API Design Standard](https://docs.microsoft.com/en-us/azure/architecture/best-practices/api-design#:~:text=REST%20APIs%20use%20a%20uniform,PUT%2C%20PATCH%2C%20and%20DELETE.)
