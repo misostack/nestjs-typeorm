@@ -1,6 +1,3 @@
-import { registerDecorator, ValidationOptions } from 'class-validator';
-import { isEmpty } from 'lodash';
-
 import {
   IsEnum,
   IsOptional,
@@ -8,6 +5,8 @@ import {
   MaxLength,
   IsNotEmpty,
 } from 'class-validator';
+import { ApiResponseProperty } from '@nestjs/swagger';
+import { Expose } from 'class-transformer';
 
 // const IsNotEmpty = (validationOptions?: ValidationOptions) => {
 //   return (object: Object, propertyName: string) => {
@@ -27,8 +26,14 @@ import {
 
 export { IsEnum, IsNotEmpty, IsOptional, IsUrl, MaxLength };
 
-export interface BaseDto {
+export abstract class BaseDto {
+  @ApiResponseProperty()
+  @Expose()
   id: number;
+  @ApiResponseProperty()
+  @Expose()
   createdAt: Date;
+  @ApiResponseProperty()
+  @Expose()
   updatedAt: Date;
 }

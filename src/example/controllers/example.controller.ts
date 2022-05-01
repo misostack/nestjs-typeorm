@@ -1,11 +1,11 @@
 import faker from '@faker-js/faker';
-import { Body, Controller, Inject, Post } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { Body, Controller, HttpStatus, Inject, Post } from '@nestjs/common';
+import { ApiCreatedResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { instanceToPlain, plainToInstance } from 'class-transformer';
 import { PublicController } from 'src/shared/controllers';
-import { ResponseFactory } from 'src/shared/helpers';
+import { ResponseFactory, ResponsePayload } from 'src/shared/helpers';
 
-import { CreateExampleDto, ExampleDto } from '../dtos';
+import { CreateExampleDto, ExampleDto, ExampleResponseDto } from '../dtos';
 import { Example } from '../entities/example.entity';
 import {
   ExampleService,
@@ -21,8 +21,13 @@ export class ExampleController extends PublicController {
   ) {
     super();
   }
+  @ApiResponse({
+    description: 'Created',
+    status: HttpStatus.CREATED,
+    type: ExampleResponseDto,
+  })
   @Post()
-  async create(@Body() payload: CreateExampleDto) {
+  async create(@Body() payload: CreateExampleDto): Promise<ExampleResponseDto> {
     const plain = {
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
@@ -38,7 +43,7 @@ export class ExampleController extends PublicController {
       CreateExampleDto,
       plain,
     );
-    const example: Example = await this.exampleService.createOne(
+    const example: ExampleDto = await this.exampleService.createOne(
       createExampleDto,
     );
     return ResponseFactory.createSuccess<ExampleDto>(

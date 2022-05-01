@@ -4,16 +4,22 @@ import { faker } from '@faker-js/faker';
 import { instanceToPlain, plainToInstance } from 'class-transformer';
 import { Example } from 'src/example/entities/example.entity';
 import { ExampleRepositoryImp } from 'src/example/repositories/example.respository';
+import { BaseService } from 'src/shared/services';
+import { ExampleRepository } from 'src/example/contracts/example.repository';
 
 @Injectable()
-export class ExampleService {
+export class ExampleService extends BaseService {
   constructor(
     @Inject('ExampleRepositoryImp')
-    private ExampleRepositoryImp: ExampleRepositoryImp,
-  ) {}
-  async createOne(createExampleDto: CreateExampleDto): Promise<Example> {
-    const example = await this.ExampleRepositoryImp.createOne(createExampleDto);
-    return example;
+    private exampleRepository: ExampleRepository,
+  ) {
+    super();
+  }
+  async createOne(payload: CreateExampleDto): Promise<ExampleDto> {
+    const example = await this.exampleRepository.createOne(
+      plainToInstance(Example, payload),
+    );
+    return this.entityToModel<Example, ExampleDto>(example, ExampleDto);
   }
 }
 

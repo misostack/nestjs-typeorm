@@ -1,6 +1,10 @@
 import { DATABASE_CONFIG } from 'src/config/environment';
 import { HttpCode, HttpStatus, INestApplication } from '@nestjs/common';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import {
+  ApiResponseProperty,
+  DocumentBuilder,
+  SwaggerModule,
+} from '@nestjs/swagger';
 import * as fs from 'fs';
 import { ValidationPipe } from './pipes';
 
@@ -33,15 +37,15 @@ export const setupGlobalPipes = (app: INestApplication) => {
 };
 
 export interface ResponsePayload<T> {
-  code: HttpStatus,
-  payload: T
+  code: HttpStatus;
+  payload: T;
 }
 
 export class ResponseFactory {
-  static createSuccess<T>(payload: T) : ResponsePayload<T> {
+  static createSuccess<T>(payload: T): ResponsePayload<T> {
     return {
       code: HttpStatus.CREATED,
-      payload
-    }
+      payload,
+    };
   }
 }
