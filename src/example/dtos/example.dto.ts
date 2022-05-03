@@ -1,5 +1,5 @@
 import { HttpStatus } from '@nestjs/common';
-import { ApiProperty, ApiResponseProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiResponseProperty, PartialType } from '@nestjs/swagger';
 import { Expose } from 'class-transformer';
 import { BaseDto } from 'src/shared/dtos';
 import { ResponsePayload } from 'src/shared/helpers';
@@ -48,9 +48,9 @@ export class CreateExampleDto {
   jobType: string;
   @ApiProperty()
   prefix: string;
-  @ApiProperty()
-  password: string;
 }
+
+export class UpdateExampleDto extends PartialType(CreateExampleDto) {}
 
 export class ExampleResponseDto implements ResponsePayload<ExampleDto> {
   @ApiResponseProperty({ example: 201 })
