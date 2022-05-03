@@ -11,10 +11,10 @@ export class BaseEntity {
   id: number;
 
   @Expose()
-  @CreateDateColumn({ type: 'timestamp', nullable: true })
+  @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;
 
   @Expose()
-  @UpdateDateColumn({ type: 'timestamp', nullable: true })
+  @UpdateDateColumn({ type: 'timestamp' })
   updatedAt: Date;
 }
