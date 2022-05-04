@@ -11,7 +11,7 @@ export enum ExampleGender {
 @Entity({
   name: generateTableName('examples'),
 })
-export class Example extends BaseEntity {
+export class Example extends BaseEntity<Example> {
   @Column('varchar', { length: 60 })
   firstName: string;
   @Column('varchar', { length: 60, nullable: true, default: '' })

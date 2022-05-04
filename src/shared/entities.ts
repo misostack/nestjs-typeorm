@@ -1,11 +1,17 @@
 import { Expose } from 'class-transformer';
+import { BaseEntity as TypeOrmBaseEntity } from 'typeorm';
 import {
   CreateDateColumn,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
-export class BaseEntity {
+export class BaseEntity<T> extends TypeOrmBaseEntity {
+  constructor(payload: Partial<T>) {
+    super();
+    Object.assign(this, payload);
+  }
+
   @Expose()
   @PrimaryGeneratedColumn()
   id: number;
