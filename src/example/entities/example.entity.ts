@@ -1,5 +1,5 @@
-import { BaseEntity } from 'src/shared/entities';
-import { generateTableName } from 'src/shared/helpers';
+import { BaseEntity } from '@shared/entities';
+import { generateTableName } from '@shared/helpers';
 import { Column, Entity } from 'typeorm';
 
 export enum ExampleGender {
@@ -11,7 +11,7 @@ export enum ExampleGender {
 @Entity({
   name: generateTableName('examples'),
 })
-export class Example extends BaseEntity {
+export class Example extends BaseEntity<Example> {
   @Column('varchar', { length: 60 })
   firstName: string;
   @Column('varchar', { length: 60, nullable: true, default: '' })

@@ -21,7 +21,7 @@ export enum Gender {
 @Entity({
   name: generateTableName('users'),
 })
-export class User extends BaseEntity {
+export class User extends BaseEntity<User> {
   // fields
   @Column('varchar', { length: 60 })
   firstName: string;

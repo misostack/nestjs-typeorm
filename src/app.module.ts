@@ -1,8 +1,12 @@
 import { Module } from '@nestjs/common';
-import { UserModule } from './user/user.module';
-import { BlogModule } from './blog/blog.module';
 import { RouterModule } from '@nestjs/core';
-import { ExampleModule } from './example/example.module';
+
+// Base Modules
+import { DatabaseModule } from '@database/database.module';
+// Feature Modules
+import { UserModule } from '@modules/user/user.module';
+import { BlogModule } from '@modules/blog/blog.module';
+import { ExampleModule } from '@modules/example/example.module';
 
 const routes = [
   { path: '', module: BlogModule },
@@ -12,6 +16,7 @@ const routes = [
 
 @Module({
   imports: [
+    DatabaseModule,
     UserModule,
     BlogModule,
     ExampleModule,

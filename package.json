@@ -26,6 +26,7 @@
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
     "@nestjs/typeorm": "^8.0.3",
+    "axios": "^0.27.2",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
     "dotenv": "^16.0.0",
@@ -69,10 +70,30 @@
       "json",
       "ts"
     ],
-    "rootDir": "src",
+    "roots": [
+      "<rootDir>"
+    ],
+    "modulePaths": [
+      "<rootDir>/"
+    ],
+    "testTimeout": 30000,
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "moduleNameMapper": {
+      "@modules/(.*)": [
+        "<rootDir>/src/$1"
+      ],
+      "@shared/(.*)": [
+        "<rootDir>/src/shared/$1"
+      ],
+      "@config/(.*)": [
+        "<rootDir>/src/config/$1"
+      ],
+      "@database/(.*)": [
+        "<rootDir>/src/database/$1"
+      ]
     },
     "collectCoverageFrom": [
       "**/*.(t|j)s"

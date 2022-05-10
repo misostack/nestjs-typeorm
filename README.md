@@ -126,6 +126,80 @@ export class Example extends BaseEntity {
 INSERT INTO `nestjs_examples` (`id`, `firstName`, `lastName`, `gender`, `jobArea`, `jobDescriptor`, `jobTitle`, `jobType`, `prefix`, `content`, `avatar`, `active`, `net`, `netIncomeRatio`, `dateOfBirth`) VALUES (NULL, 'CURRENT_TIMESTAMP(6).000000', 'CURRENT_TIMESTAMP(6).000000', 'TCName', 'Example', '1', 'test', 'test', 'test', 'testt', 'test', 'test', NULL, '1', '0', '0', '1970-01-01');
 ```
 
+## Funny things
+
+### 1. NestJS Typescript and Path Alias
+
+> tsconfig.json
+
+```json
+"compilerOptions": {
+    "paths": {
+      "@modules/*": ["src/*"],
+      "@shared/*": ["src/shared/*"],
+      "@config/*": ["src/config/*"],
+      "@database/*": ["src/database/*"]
+    },
+}
+```
+
+> yourfile.ts
+
+```ts
+// Base Modules
+import { DatabaseModule } from '@database/database.module';
+// Feature Modules
+import { UserModule } from '@modules/user/user.module';
+import { BlogModule } from '@modules/blog/blog.module';
+import { ExampleModule } from '@modules/example/example.module';
+```
+
+It's more clean right? But when you ran test, you may got this issue
+
+> Cannot find module '@database/database.module' from 'src/example/services/example/example.service.spec.ts'
+
+**How to solve it?**
+
+- moduleNameMapper is your answer
+
+> package.json
+
+```json
+"jest": {
+    "moduleNameMapper": {
+      "@modules/(.*)": [
+        "<rootDir>/src/$1"
+      ],
+      "@shared/(.*)": [
+        "<rootDir>/src/shared/$1"
+      ],
+      "@config/(.*)": [
+        "<rootDir>/src/config/$1"
+      ],
+      "@database/(.*)": [
+        "<rootDir>/src/database/$1"
+      ]
+    },
+}
+```
+
+## Build
+
+Steps:
+
+- Test your Dockerfile : for node application
+- Test your compose : node app + database + proxy
+
+### Dockerfile
+
+```bash
+docker build -f ./Dockerfile -t jsguru/nestjs .
+docker build -f ./Dockerfile -t jsguru/nestjs:0.1 -t jsguru/nestjs:lastest .
+docker images -a
+
+docker container run --name nestjs --env-file=./.env.docker -p 3000:3000 -d jsguru/nestjs
+```
+
 ## API Standard
 
 ### Uniform Resource Interfaces

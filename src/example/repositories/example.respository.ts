@@ -2,8 +2,8 @@ import faker from '@faker-js/faker';
 import { Injectable } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
 import { Repository } from 'typeorm';
-import { ExampleRepository } from '../contracts/example.repository';
-import { Example } from '../entities/example.entity';
+import { ExampleRepository } from '@modules/example/contracts/example.repository';
+import { Example } from '@modules/example/entities/example.entity';
 
 @Injectable({})
 export class ExampleRepositoryImp
