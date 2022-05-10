@@ -1,5 +1,5 @@
-import { BaseEntity } from 'src/shared/entities';
-import { generateTableName } from 'src/shared/helpers';
+import { BaseEntity } from '@shared/entities';
+import { generateTableName } from '@shared/helpers';
 import { Column, Entity } from 'typeorm';
 
 export enum ExampleGender {

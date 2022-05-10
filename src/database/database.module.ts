@@ -3,6 +3,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Environment } from 'src/config/environment';
 import { Example } from 'src/example/entities/example.entity';
 
+const ENTITIES = [Example];
+
 @Module({
   imports: [
     // connect database
@@ -10,10 +12,11 @@ import { Example } from 'src/example/entities/example.entity';
       ...Environment.getMainDatabaseConfiguration(__dirname),
       autoLoadEntities: true,
       // logging: true,
-      logging: ['query', 'error'],
+      logging:
+        process.env.NODE_ENV === 'development' ? ['query', 'error'] : 'error',
     }),
     // registered entities
-    TypeOrmModule.forFeature([Example]),
+    TypeOrmModule.forFeature(ENTITIES),
   ],
 })
 export class DatabaseModule {}

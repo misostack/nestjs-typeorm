@@ -1,11 +1,11 @@
 import faker from '@faker-js/faker';
 import { Test, TestingModule } from '@nestjs/testing';
 import axios from 'axios';
-import { before } from 'lodash';
-import { DatabaseModule } from 'src/database/database.module';
-import { Example, ExampleGender } from 'src/example/entities/example.entity';
+
+import { DatabaseModule } from '@database/database.module';
+import { Example } from '@modules/example/entities/example.entity';
 import { getConnection } from 'typeorm';
-import { ExampleService } from './example.service';
+import { ExampleService } from '@modules/example/services/example/example.service';
 
 describe('ExampleService', () => {
   let service: ExampleService;
