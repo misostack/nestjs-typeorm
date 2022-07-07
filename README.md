@@ -219,3 +219,7 @@ docker container run --name nestjs --env-file=./.env.docker -p 3000:3000 -d jsgu
 # References
 
 - [API Design Standard](https://docs.microsoft.com/en-us/azure/architecture/best-practices/api-design#:~:text=REST%20APIs%20use%20a%20uniform,PUT%2C%20PATCH%2C%20and%20DELETE.)
+
+### Funny issues
+
+- [TypeORM CLI 3.x funny issue](https://github.com/typeorm/typeorm/issues/8814)
