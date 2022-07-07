@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import { DataSource, DataSourceOptions } from 'typeorm';
 export const DATABASE_CONFIG = {
   MAIN_DB_TYPE: 'mysql',
   MAIN_DB_URL: process.env.MYSQL_DB_URL || 'nestjs',
@@ -23,5 +24,10 @@ export class Environment {
         migrationsDir: dirname + '/database/migrations',
       },
     };
+  }
+  static getMainDatasourceConfiguration(dirname): any {
+    return new DataSource({
+      ...Environment.getMainDatabaseConfiguration(dirname),
+    } as DataSourceOptions);
   }
 }

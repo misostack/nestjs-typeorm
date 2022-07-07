@@ -8,11 +8,13 @@ import {
 } from 'src/shared/dtos';
 import { MAX_LENGTH_TEXT_FIELD } from 'src/shared/constants';
 import { Gender } from '../entities/user.entity';
+import { MinLength } from 'class-validator';
 
 export class CreateUserDto {
   @ApiProperty()
   @MaxLength(60)
   @IsNotEmpty()
+  @MinLength(2)
   readonly firstName: string;
   @ApiProperty()
   @MaxLength(60)
